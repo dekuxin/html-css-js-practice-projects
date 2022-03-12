@@ -1,0 +1,121 @@
+<!DOCTYPE  html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <meta name="google" content="notranslate" />
+
+    <title>File uploader</title>
+
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- Header title -->
+        <header>Image uploader</header>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" class="file-input" hidden>
+            <!-- Logo -->
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>Browse or drop file to upload</p>
+        </form>
+
+        <!-- Uploading section -->
+        <section class="progress-area">
+
+        </section>
+
+        <!-- Uploaded section-->
+        <section class="uploaded-area">
+            
+        </section>
+        
+    </div>
+
+    <script>
+
+        const form = document.querySelector('form'),
+        fileInput = document.querySelector('.file-input'),
+        progressArea = document.querySelector('.progress-area'),
+        uploadedArea = document.querySelector('.uploaded-area')
+
+        const files = []
+
+        form.addEventListener('click', function() {
+            fileInput.click()
+        })
+
+        fileInput.onchange = function({target}) {
+            let file = target.files[0]
+            if(file) {
+                let fileName = file.name;
+                uploadFile(fileName)
+            }
+        }
+
+        function uploadFile(name) {
+            if(files.includes(name)) return alert('Cannot upload the same file twice')
+            let newName = name
+            if(name.length >= 16) {
+                let splitName = name.split('.')
+                newName = splitName[0].substring(0, 16) + '... .' + splitName[splitName.length - 1]
+            }
+
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', '/upload')
+            xhr.upload.addEventListener('progress', ({loaded, total}) => {
+                let fileLoaded = Math.floor(loaded * 100 / total)
+                let fileTotal = Math.floor(total / 1000)
+
+                let fileSize = fileTotal < 1024 ? fileTotal + ' KB' : (loaded / (1024 * 1024)).toFixed(2) + ' MB'
+
+                let progressHTML = `
+                <li class="row">
+                    <i class="fa-solid fa-file-image"></i>
+
+                    <div class="content">
+                        <div class="details">
+                            <span title="${name}" class="name">${newName}</span>
+                            <span class="percent">${fileLoaded}%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div style="width: ${fileLoaded}%" class="progress"></div>
+                        </div>
+                    </div>
+                </li>
+                `
+
+                progressArea.innerHTML = progressHTML
+                
+                let uploadHTML = `
+                <li class="row">
+                    <div class="content">
+                        <i class="fa-solid fa-file-image"></i>
+
+                        <div class="details">
+                            <span title="${name}" class="name">${newName}</span>
+                            <span class="size">${fileSize}</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-check"></i>
+                </li>
+                `
+                
+
+                if(total === loaded) {
+                    progressArea.innerHTML = null
+                    uploadedArea.innerHTML += uploadHTML
+                    files.push(name)
+                }
+            })
+            let formData = new FormData(form);
+            xhr.send(formData);
+        }
+
+    </script>
+    
+</body>
+</html>

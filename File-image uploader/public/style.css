@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --primary: rgb(108, 159, 255);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--primary);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+}
+
+.wrapper {
+    background-color: #fff;
+    color: #000;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    width: 450px;
+}
+
+.wrapper header {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--primary);
+}
+
+.wrapper form {
+    border: 2px dashed var(--primary);
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    height: 200px;
+    margin: 1.5rem 0;
+    cursor: pointer;
+}
+
+form :where(i, p) {
+    color: var(--primary);
+}
+
+form i {
+    font-size: 2.5rem;
+}
+
+form p {
+    margin-top: 1rem;
+}
+
+section .row {
+    background-color: #e9f0ff;
+    list-style: none;
+    margin-bottom: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+section .row i {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.progress-area .row .content {
+    width: 100%;
+    margin-left: 1rem;
+}
+
+.progress-area .details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress-area .progress-bar {
+    height:4px;
+    background-color:#fff;
+    border-radius: 20px;
+    margin: 8px 0px 4px 0px
+}
+
+.progress-area .progress {
+    background-color: var(--primary);
+    height:100%;
+    border-radius: inherit;
+}
+
+.uploaded-area .content {
+    display: flex;
+    align-items: center;
+}
+
+.uploaded-area .details {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.uploaded-area .details .size {
+    font-size: 0.75rem;
+    color: #404040
+}
+
+.uploaded-area{
+    max-height: 240px;
+    overflow-y: scroll;
+}
+
+.uploaded-area::-webkit-scrollbar {
+    width: 0px;
+}
+
+section .details span {
+    font-size: 1rem;
+}

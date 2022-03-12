@@ -1,0 +1,114 @@
+<!DOCTYPE  html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/public/style.css">
+    <meta name="google" content="notranslate" />
+
+    <title>File uploader</title>
+
+</head>
+<bod>
+
+    <div class="wrapper">
+        <!-- Header title -->
+        <header>Image uploader</header>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" class="file-input" hidden>
+            <!-- Logo -->
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>Browse or drop file to upload</p>
+        </form>
+
+        <!-- Uploading section -->
+        <section class="progress-area">
+
+            <!-- Example uploading file -->
+            <li class="row">
+                <!-- File logo -->
+                <i class="fa-solid fa-file-image"></i>
+
+                <div class="content">
+                    <div class="details">
+                        <span class="name">myimage.png</span>
+                        <span class="percent">50%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                </div>
+            </li>
+
+        </section>
+
+        <!-- Uploaded section-->
+        <section class="uploaded-area">
+            <!-- Example uploaded file -->
+            <li class="row">
+                <div class="content">
+                    <!-- File logo -->
+                    <i class="fa-solid fa-file-image"></i>
+                    <!-- Content details -->
+                    <div class="details">
+                        <span class="name">myimage.png</span>
+                        <span class="size">251 KB</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-check"></i>
+            </li>
+
+            <li class="row">
+                <div class="content">
+                    <!-- File logo -->
+                    <i class="fa-solid fa-file-image"></i>
+                    <!-- Content details -->
+                    <div class="details">
+                        <span class="name">myimage.png</span>
+                        <span class="size">251 KB</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-check"></i>
+            </li>
+
+            
+        </section>
+        
+    </div>
+
+    <script>
+
+        const form = document.querySelector('form'),
+        fileInput = document.querySelector('.file-input'),
+        progressArea = document.querySelector('.progress-area'),
+        uploadedArea = document.querySelector('.uploaded-area')
+
+        form.addEventListener('click', function() {
+            fileInput.click()
+        })
+
+        fileInput.onchange = function({target}) {
+            let file = target.files[0]
+            if(file) {
+                let fileName = file.name;
+                console.log(fileName)
+                uploadFile(fileName)
+            }
+        }
+
+        function uploadFile(name) {
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', '/upload')
+            xhr.upload.addEventListener('progress', e => {
+                console.log(e)
+            })
+            let formData = new FormData(form);
+            xhr.send(formData);
+        }
+
+    </script>
+    
+</bod>
+</html>
