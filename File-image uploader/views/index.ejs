@@ -32,6 +32,13 @@
         <section class="uploaded-area">
             
         </section>
+
+        <section>
+            <div>
+                <img src=""  alt="">
+                <video width="100%" id="preview" src="" controls></video>
+            </div>
+        </section>
         
     </div>
 
@@ -40,7 +47,8 @@
         const form = document.querySelector('form'),
         fileInput = document.querySelector('.file-input'),
         progressArea = document.querySelector('.progress-area'),
-        uploadedArea = document.querySelector('.uploaded-area')
+        uploadedArea = document.querySelector('.uploaded-area'),
+        preview = document.querySelector('#preview')
 
         const files = []
 
@@ -50,9 +58,19 @@
 
         fileInput.onchange = function({target}) {
             let file = target.files[0]
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function (e) {
+                // on convertit l'image en une chaîne de caractères base64
+                preview.src = reader.result
+            }, false);
             if(file) {
+
+                reader.readAsDataURL(file);
+                
                 let fileName = file.name;
                 uploadFile(fileName)
+                
             }
         }
 
@@ -112,6 +130,7 @@
                 }
             })
             let formData = new FormData(form);
+            
             xhr.send(formData);
         }
 
