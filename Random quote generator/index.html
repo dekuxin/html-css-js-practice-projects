@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quote generator</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Container -->
+    <section class="container">
+        <!-- Big title representation -->
+        <h1>Quote of the day</h1>
+
+        <!-- Quote area -->
+        <div class="quote">
+            <!-- Quote text -->
+            <div class="text">
+                <i class="fa-solid fa-quote-left"></i>
+                <p id="quote-content"></p>
+                <i class="fa-solid fa-quote-right"></i>
+            </div>
+            <!-- Quote author -->
+            <div class="author">
+                <span>__</span>
+                <span id="author-name" class="name"></span>
+            </div>
+
+        </div>
+
+        <!-- Separator -->
+        <div class="separator"></div>
+
+        <!-- Footer button, icons -->
+        <footer>
+
+            <!-- Icons -->
+            <div class="icons">
+                <!-- Dark/light mode-->
+                <div title="Switch dark/light mode" id="mode" class="icon">
+                    <i class="fa-solid fa-moon"></i>
+                </div>
+                <!-- Copy quote -->
+                <div title="Copy the quote" id="copy" class="icon">
+                    <i class="fa-solid fa-copy"></i>
+                </div>
+            </div>
+            
+            <!-- New quote button -->
+            <div>
+                <button id="new-quote" class="generator">New quote</button>
+            </div>
+        </footer>
+        
+    </section>
+    
+</body>
+</html>

@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --bg-1: rgb(162, 122, 255);
+    --bg-2: rgba(255, 255, 255);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-1)
+}
+
+.wrapper {
+    background-color: var(--bg-2);
+    padding: 1rem 2rem;
+    min-width: 450px;
+    border-radius: 0.5rem;
+}
+
+.wrapper .title {
+    font-size: 2em;
+    text-align: center;
+    margin: 1rem 0;
+    color: var(--bg-1);
+}
+
+.wrapper .input {
+    position: relative;
+    border: 1px solid #000;
+    border-radius: 0.25rem;
+    margin: 0.75rem 0;
+}
+
+.input input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: .75rem 1rem;
+    font-size: 1.25rem;
+    z-index: 100;
+}
+
+.input label {
+    position: absolute;
+    top: 0%;
+    background-color: white;
+    padding: 0 0.5rem;
+    left: 1rem;
+    transform: translateY(-50%);
+    margin: 0;
+    transition: all 0.3s ease;
+    z-index: 0;
+}
+
+.input input:focus + label {
+    color: var(--bg-1);
+    font-size: 1.125rem;
+    z-index: 1;
+}
+
+.wrapper form button {
+    padding: 1rem 2rem;
+    background-color: var(--bg-1);
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.25rem;
+    transition: all ease 0.3s;
+    margin-top: 1rem;
+}
+
+.wrapper form button:hover {
+    background-color: rgb(123, 82, 219);
+    cursor: pointer;
+    
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
